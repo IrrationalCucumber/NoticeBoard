@@ -21,6 +21,9 @@ function Profile() {
       setAccount((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
   };
+
+  //save changes
+  const saveChanges = () => {};
   return (
     <div>
       <ProfileInputs
@@ -34,6 +37,7 @@ function Profile() {
         date="bday"
         age="age"
       />
+      <button onClick={saveChanges}>SAVE</button>
     </div>
   );
 }

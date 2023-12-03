@@ -9,11 +9,23 @@ function Signup() {
     sex: "",
     bday: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
   //save input data to account variablse
   const handleChange = () => {};
 
   //save inputted data to db
-  const handleClick = () => {};
+  const handleClick = () => {
+    if (
+      account.username == null ||
+      account.password == null ||
+      fname == null ||
+      lname == null ||
+      sex == null ||
+      bday == null
+    ) {
+      setErrorMessage = "Please fill all fields";
+    }
+  };
   return (
     <div>
       <form>
@@ -27,6 +39,12 @@ function Signup() {
           type="password"
           placeholder="Password"
           name="password"
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          name="password2"
           onChange={handleChange}
         />
         <input

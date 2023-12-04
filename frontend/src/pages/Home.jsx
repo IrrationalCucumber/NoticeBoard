@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     const fetchName = async () => {
       axios
-        .get("http://localhost:8800/user", userID) // endpoint
+        .get("http://localhost:8800/username", userID) // endpoint
         .then((response) => {
           setName(response.data);
         })

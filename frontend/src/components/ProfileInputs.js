@@ -9,31 +9,31 @@ function ProfileInputs(props) {
           placeholder="Username"
           name={props.username}
           value={props.usernameValue}
-          onChange={change}
+          onChange={props.change}
         />
         <input
           type="password"
           placeholder="Username"
           name={props.password}
           value={props.passwordValue}
-          onChange={change}
+          onChange={props.change}
         />
         <input
           type="text"
           placeholder="First name"
           name={props.fname}
           value={props.fnameValue}
-          onChange={change}
+          onChange={props.change}
         />
         <input
           type="text"
           placeholder="Last name"
           name={props.lname}
           value={props.usernameValue}
-          onChange={change}
+          onChange={props.change}
         />
 
-        <select name={props.sex} onChange={change} value={props.sexType}>
+        <select name={props.sex} onChange={props.change} value={props.sexType}>
           <option value="">Choose type....</option>
           <option value="Male">Delivery Service</option>
           <option value="Female">Transport Service</option>
@@ -43,14 +43,14 @@ function ProfileInputs(props) {
           placeholder="Birthday"
           name={props.bday}
           value={props.bdayValue}
-          onChange={change}
+          onChange={props.change}
         />
         <input
           type="number"
           placeholder="Age"
           name={props.age}
           value={props.ageValue}
-          onChange={change}
+          onChange={props.change}
         />
       </form>
     </>

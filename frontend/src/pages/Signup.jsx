@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 function Signup() {
   const [account, setAccount] = useState({
     username: "",
@@ -18,10 +18,10 @@ function Signup() {
     if (
       account.username == null ||
       account.password == null ||
-      fname == null ||
-      lname == null ||
-      sex == null ||
-      bday == null
+      account.fname == null ||
+      account.lname == null ||
+      account.sex == null ||
+      account.bday == null
     ) {
       setErrorMessage = "Please fill all fields";
     }

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProfileInputs from "../components/ProfileInputs";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 function Profile() {
   const [name, setName] = useState("");
@@ -12,20 +14,23 @@ function Profile() {
     bday: "",
     age: "",
   });
+  //carry id to other page
+  const location = useLocation;
+  const userID = location.pathname.split("/")[2]; //pathname to array from url
   //get name
-  useEffect(() => {
-    const fetchName = async () => {
-      axios
-        .get("http://localhost:8800/username", userID) // endpoint
-        .then((response) => {
-          setName(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-    fetchName();
-  }, []);
+  // useEffect(() => {
+  //   const fetchName = async () => {
+  //     axios
+  //       .get("http://localhost:8800/username", userID) // endpoint
+  //       .then((response) => {
+  //         setName(response.data);
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
+  //   };
+  //   fetchName();
+  // }, []);
 
   //save data to account
   const handleChange = (e) => {

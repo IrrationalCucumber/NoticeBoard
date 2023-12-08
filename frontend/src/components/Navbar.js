@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "./NavButton";
+import { Link } from "react-router-dom";
+import { Button } from "./Button";
 import "./Navbar.css";
 
 function Navbar(props) {
@@ -26,11 +26,6 @@ function Navbar(props) {
   //handles the resizing of window
   window.addEventListener("resize", showButton);
 
-  //carry id to other page
-  const location = useLocation();
-  const userID = location.pathname.split("/")[2];
-  //pathname to array from
-
   return (
     <>
       <nav className="navbar">
@@ -43,29 +38,11 @@ function Navbar(props) {
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
-              <Link
-                to="/campaign"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                CAMPAIGN
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to={props.faction}
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                {props.page3}
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link to="/map" className="nav-links" onClick={closeMobileMenu}>
                 MAP
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link
                 to={props.profile}
                 className="nav-links"
@@ -73,7 +50,7 @@ function Navbar(props) {
               >
                 {props.page4}
               </Link>
-            </li>
+            </li> */}
           </ul>
           {button && (
             <Button page="/sign-in" buttonStyle="btn--outline">

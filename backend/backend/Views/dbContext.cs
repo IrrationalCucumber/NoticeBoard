@@ -49,12 +49,12 @@ public partial class dbContext : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("userEmail");
             entity.Property(e => e.Age).HasColumnName("userAge");
+            entity.Property(e => e.Bday)
+                .HasColumnType("Date")
+                .HasColumnName("userBday");
             entity.Property(e => e.Gender)
                 .HasMaxLength(45)
                 .HasColumnName("userGender");
-            entity.Property(e => e.Type)
-                .HasMaxLength(45)
-                .HasColumnName("userType");
         });
 
         OnModelCreatingPartial(modelBuilder);

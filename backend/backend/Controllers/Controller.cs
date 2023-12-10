@@ -17,10 +17,8 @@ namespace backend.Controllers
 
             return list;
         }
-
-
         [HttpPost]
-        public string Signup(userModel model)
+        public string SignUp(userModel model)
         {
             using (var context = new dbContext())
             {
@@ -32,6 +30,7 @@ namespace backend.Controllers
                     LName = model.LName,
                     Email = model.Email,
                     Age = model.Age,
+                    Bday = model.Bday,
                     Gender = model.Gender,
                 });
 
@@ -39,8 +38,6 @@ namespace backend.Controllers
             }
             return "SUCCESS";
         }
-
-
         [HttpGet]
         public ActionResult<userModel> Profile(int userId)
         {
@@ -56,7 +53,6 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
-
         //for sign in
         //verify if user exist
         [HttpGet]
@@ -74,10 +70,9 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
-
         //get name
         [HttpGet]
-        public ActionResult<string> SignIn(int userID)
+        public ActionResult<string> GetName(int userID)
         {
             using (var context = new dbContext())
             {
@@ -91,6 +86,7 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
+
 
 
     }

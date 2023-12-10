@@ -1,34 +1,61 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "./style.css";
+import axios from "axios";
 function Signup() {
   const [account, setAccount] = useState({
     username: "",
     password: "",
     fname: "",
     lname: "",
-    sex: "",
+    gender: "",
+    email: "",
     bday: "",
+    age: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
   //save input data to account variablse
-  const handleChange = () => {};
-
-  //save inputted data to db
-  const handleClick = () => {
-    if (
-      account.username == null ||
-      account.password == null ||
-      account.fname == null ||
-      account.lname == null ||
-      account.sex == null ||
-      account.bday == null
-    ) {
-      setErrorMessage = "Please fill all fields";
+  const handleChange = (e) => {
+    // For the 'gender' field, directly set the value without using spread syntax
+    if (e.target.name === "gender") {
+      setAccount((prev) => ({ ...prev, gender: e.target.value }));
+    } else {
+      // For other fields, use spread syntax as before
+      setAccount((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
   };
+  //save inputted data to db
+  const handleClick = async (e) => {
+    //if fileds are empty
+    //error message
+    if (
+      !account.username ||
+      !account.password ||
+      !account.email ||
+      !account.fname ||
+      !account.lname ||
+      !account.age ||
+      !account.bday ||
+      !account.gender
+    ) {
+      setErrorMessage("Missing fields. Please try again.");
+    }
+
+    //save to db if no error
+    e.preventDefault();
+    try {
+      await axios.post("https://localhost:8800/SignUp", account);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log(account);
   return (
-    <div>
-      <form>
+    <div className="body_su">
+      <form className="form_su">
         <input
           type="text"
           placeholder="Username"
@@ -42,9 +69,9 @@ function Signup() {
           onChange={handleChange}
         />
         <input
-          type="password"
-          placeholder="Password"
-          name="password2"
+          type="email"
+          placeholder="EMail"
+          name="email"
           onChange={handleChange}
         />
         <input
@@ -60,10 +87,10 @@ function Signup() {
           onChange={handleChange}
         />
 
-        <select name="sex" onChange={handleChange} value={account.sex}>
-          <option value="">Choose type....</option>
-          <option value="Male">Delivery Service</option>
-          <option value="Female">Transport Service</option>
+        <select name="gender" onChange={handleChange} value={account.gender}>
+          <option value="">Choose Sex....</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
         </select>
         <input
           type="date"
@@ -77,10 +104,11 @@ function Signup() {
           name="age"
           onChange={handleChange}
         />
+        <h4>{errorMessage}</h4>
         <button onClick={handleClick}>Sign Up</button>
       </form>
       <h4>
-        Already have an account? Sign-in <Link to="/signin">here!</Link>
+        Already have an account? Sign-in <Link to="/">here!</Link>
       </h4>
     </div>
   );

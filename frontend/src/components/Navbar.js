@@ -53,7 +53,7 @@ function Navbar(props) {
             </li>
           </ul>
           {button && (
-            <Button page="/sign-in" buttonStyle="btn--outline">
+            <Button page="/" buttonStyle="btn--outline">
               SIGN OUT
             </Button>
           )}

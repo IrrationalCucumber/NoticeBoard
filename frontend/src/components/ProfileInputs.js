@@ -13,7 +13,7 @@ function ProfileInputs(props) {
         />
         <input
           type="password"
-          placeholder="Username"
+          placeholder="Password"
           name={props.password}
           value={props.passwordValue}
           onChange={props.change}
@@ -29,14 +29,21 @@ function ProfileInputs(props) {
           type="text"
           placeholder="Last name"
           name={props.lname}
-          value={props.usernameValue}
+          value={props.lnameValue}
+          onChange={props.change}
+        />
+        <input
+          type="text"
+          placeholder="Email address"
+          name={props.email}
+          value={props.emailValue}
           onChange={props.change}
         />
 
         <select name={props.sex} onChange={props.change} value={props.sexType}>
           <option value="">Choose type....</option>
-          <option value="Male">Delivery Service</option>
-          <option value="Female">Transport Service</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
         </select>
         <input
           type="date"

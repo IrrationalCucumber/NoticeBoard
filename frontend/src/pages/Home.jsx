@@ -33,7 +33,7 @@ function Home() {
         //faction={`/faction/${userID}`}
         //page3={faction}
         page4={name.username}
-        // profile={`/profile/${userID}`}
+        profile={`/profile/${userID}`}
       />
       Home
     </div>

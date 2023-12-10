@@ -17,6 +17,7 @@ public partial class dbContext : DbContext
     //public virtual DbSet<Transaction> Transactions { get; set; }
 
     public virtual DbSet<user> Users { get; set; }
+    public virtual DbSet<post> Posts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -55,6 +56,29 @@ public partial class dbContext : DbContext
             entity.Property(e => e.Gender)
                 .HasMaxLength(45)
                 .HasColumnName("userGender");
+        });
+
+        modelBuilder.Entity<post>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("boardpost");
+
+            entity.Property(e => e.Id).HasColumnName("postID");
+            entity.Property(e => e.Title)
+                .HasMaxLength(45)
+                .HasColumnName("postTitle");
+            entity.Property(e => e.Description)
+                .HasMaxLength(45)
+                .HasColumnName("postDesc");
+            entity.Property(e => e.Location)
+                .HasMaxLength(45)
+                .HasColumnName("postLoc");
+            entity.Property(e => e.Long).HasColumnName("postLong");
+            entity.Property(e => e.Lat).HasColumnName("postLat");
+            entity.Property(e => e.Date)
+                .HasColumnType("Date")
+                .HasColumnName("postDate");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -86,7 +86,27 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
+        [HttpPost]
+        public string Post(postModel model)
+        {
+            using (var context = new dbContext())
+            {
+                context.Posts.Add(new post
+                {
+                    Title = model.Title,
+                    Description = model.Description,
+                    Location = model.Location,
+                    Long = model.Long,
+                    Lat = model.Lat,
+                    Date = model.Date,
+                    PosterID = model.PosterID,
 
+                });
+
+                context.SaveChanges();
+            }
+            return "SUCCESS";
+        }
 
 
     }

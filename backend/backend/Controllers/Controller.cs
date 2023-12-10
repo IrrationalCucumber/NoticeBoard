@@ -86,6 +86,7 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
+        //post notice
         [HttpPost]
         public string Post(postModel model)
         {

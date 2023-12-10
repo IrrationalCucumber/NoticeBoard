@@ -6,13 +6,13 @@ import Signup from "./pages/Signup";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <Routes>
-          <Route to="/" element={<Home />} />
-          <Route to="/profile/:userID" element={<Profile />} />
-          <Route to="/sign-in" element={<SignIn />} />
-          <Route to="/sign-up" element={<Signup />} />
+          <Route path="/home/:userID" exact Component={Home} />
+          <Route path="/profile/:userID" element={<Profile />} />
+          <Route path="/" element={<SignIn />} />
+          <Route path="/sign-up" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </div>

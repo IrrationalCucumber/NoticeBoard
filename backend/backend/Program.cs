@@ -17,7 +17,8 @@ if (app.Environment.IsDevelopment())
     app.UseCors(builder=>builder
     .AllowAnyHeader()
     .AllowAnyOrigin()
-    .AllowCredentials());
+    .AllowAnyMethod()
+    );
 }
 
 app.UseHttpsRedirection();

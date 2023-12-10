@@ -75,6 +75,23 @@ namespace backend.Controllers
             }
         }
 
+        //get name
+        [HttpGet]
+        public ActionResult<string> SignIn(int userID)
+        {
+            using (var context = new dbContext())
+            {
+                var user = context.Users.FirstOrDefault(user => user.Id == userID);
+
+                if (user != null)
+                {
+                    return Ok(user.Username);
+                }
+
+                return NotFound();
+            }
+        }
+
 
     }
 }

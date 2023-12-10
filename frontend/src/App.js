@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/Signup";
+import PostNotice from "./pages/PostNotice";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/profile/:userID" element={<Profile />} />
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<Signup />} />
+          <Route path="/post/:userID" element={<PostNotice />} />
         </Routes>
       </BrowserRouter>
     </div>

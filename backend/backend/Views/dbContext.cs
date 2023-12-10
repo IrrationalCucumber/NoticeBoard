@@ -79,6 +79,7 @@ public partial class dbContext : DbContext
             entity.Property(e => e.Date)
                 .HasColumnType("Date")
                 .HasColumnName("postDate");
+            entity.Property(e => e.PosterID).HasColumnName("posterID");
         });
 
         OnModelCreatingPartial(modelBuilder);

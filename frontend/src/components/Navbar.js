@@ -30,8 +30,8 @@ function Navbar(props) {
     <>
       <nav className="navbar">
         <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            CRUSADER'S CAMPAIGN
+          <Link to="/home" className="navbar-logo" onClick={closeMobileMenu}>
+            NOTICE BOARD
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
@@ -42,7 +42,7 @@ function Navbar(props) {
                 MAP
               </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link
                 to={props.profile}
                 className="nav-links"
@@ -50,7 +50,7 @@ function Navbar(props) {
               >
                 {props.page4}
               </Link>
-            </li> */}
+            </li>
           </ul>
           {button && (
             <Button page="/sign-in" buttonStyle="btn--outline">

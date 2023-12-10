@@ -10,11 +10,6 @@ function SignIn() {
   const [userID, setUserID] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // This useEffect will be triggered when userID changes
-    console.log(userID);
-  }, [userID]);
-
   //hndle event when button is click
   const handleClick = async (e) => {
     e.preventDefault();
@@ -34,7 +29,7 @@ function SignIn() {
 
         // Use the useEffect hook to handle the state update asynchronously
         setUserID(response.data);
-        navigate(`/home/${userID}`);
+        navigate(`/home/${response.data}`);
       } else {
         setErrorMessage("Invalid Username/Password");
       }
@@ -43,6 +38,11 @@ function SignIn() {
       setErrorMessage("Invalid Username/Password");
     }
   };
+
+  useEffect(() => {
+    // This useEffect will be triggered when userID changes
+    console.log(userID);
+  }, [userID]);
   // await axios
   //   .get(
   //     `https://localhost:8800/SignIn?username=${username}&password=${password}`

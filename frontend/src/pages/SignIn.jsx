@@ -25,9 +25,9 @@ function SignIn() {
       )
       .then((response) => {
         if (response != null) {
-          //console.log(response.data);
+          console.log(response.data);
           setUserID(response.data);
-          //console.log(userID);
+          console.log(userID);
           navigate(`/home/${userID}`);
         } else {
           setErrorMessage("Invalid Username/Password");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
@@ -10,6 +10,11 @@ function SignIn() {
   const [userID, setUserID] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // This useEffect will be triggered when userID changes
+    console.log(userID);
+  }, [userID]);
+
   //hndle event when button is click
   const handleClick = async (e) => {
     e.preventDefault();
@@ -19,25 +24,45 @@ function SignIn() {
       setErrorMessage("Please enter both username and password.");
       return;
     }
-    axios
-      .get(
+    try {
+      const response = await axios.get(
         `https://localhost:8800/SignIn?username=${username}&password=${password}`
-      )
-      .then((response) => {
-        if (response != null) {
-          console.log(response.data);
-          setUserID(response.data);
-          console.log(userID);
-          navigate(`/home/${userID}`);
-        } else {
-          setErrorMessage("Invalid Username/Password");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
+      );
+
+      if (response != null) {
+        console.log(response.data);
+
+        // Use the useEffect hook to handle the state update asynchronously
+        setUserID(response.data);
+        navigate(`/home/${userID}`);
+      } else {
         setErrorMessage("Invalid Username/Password");
-      });
+      }
+    } catch (error) {
+      console.log(error);
+      setErrorMessage("Invalid Username/Password");
+    }
   };
+  // await axios
+  //   .get(
+  //     `https://localhost:8800/SignIn?username=${username}&password=${password}`
+  //   )
+  //   .then((response) => {
+  //     if (response != null) {
+  //       console.log(response.data);
+  //       setUserID(response.data);
+  //       //console.log(userID);
+  //       //navigate(`/home/${userID}`);
+  //     } else {
+  //       setErrorMessage("Invalid Username/Password");
+  //     }
+  //     console.log(userID);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //     setErrorMessage("Invalid Username/Password");
+  //   });
+  //  };
 
   return (
     <div>

@@ -39,17 +39,25 @@ function NoticeList() {
         const response = await axios.get(
           `https://localhost:8800/NoticeList?posterID=${userID}`
         );
-        console.log(response.data[0]);
+        //console.log(response.data[0]);
         setNotices(response.data);
         //setPostID()
       } catch (error) {
-        console.log(error);
+        console.log("Its Empty");
       }
     };
 
     fetchAllNotice();
   }, [userID]);
-  const handleDelete = () => {};
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.post(`https://localhost:8800/DeletePost?postId=${id}`);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
       <Navbar
@@ -63,7 +71,7 @@ function NoticeList() {
 
       {notices.map((Notice) => (
         <div key={Notice.id}>
-          {/* <h5>{Notice.id}</h5>
+          <h5>{Notice.id}</h5>
           <h3>{Notice.title}</h3>
           <p>{Notice.description}</p>
           <p>{new Date(Notice.date).toLocaleDateString()}</p>
@@ -73,7 +81,8 @@ function NoticeList() {
           </p>
           <button onClick={(e) => navigate(`/view/${userID}/${Notice.id}`)}>
             VIEW
-          </button> */}
+          </button>
+          <button onClick={() => handleDelete(Notice.id)}>DELETE</button>
           <PostCard
             title={Notice.title}
             desc={Notice.description}
@@ -83,7 +92,7 @@ function NoticeList() {
             lat={Notice.lat}
             click={(e) => navigate(`/view/${userID}/${Notice.id}`)}
             button="VIEW"
-            del={handleDelete}
+            del={(e) => handleDelete(Notice.id)}
             delete="DELETE"
           />
         </div>

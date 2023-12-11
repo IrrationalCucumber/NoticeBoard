@@ -138,7 +138,9 @@ namespace backend.Controllers
             }
             return "SUCCESS";
         }
+       
         //display posted notice
+        [HttpGet]
         public ActionResult<IEnumerable<postModel>> NoticeList(int posterID)
         {
             using (var context = new dbContext())

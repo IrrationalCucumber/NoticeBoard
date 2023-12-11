@@ -108,6 +108,21 @@ namespace backend.Controllers
             }
             return "SUCCESS";
         }
+        //display posted notice
+        public ActionResult<IEnumerable<postModel>> NoticeList(int posterID)
+        {
+            using (var context = new dbContext())
+            {
+                var posts = context.Posts.Where(post => post.PosterID == posterID).ToList();
+
+                if (posts.Count > 0)
+                {
+                    return Ok(posts);
+                }
+
+                return NotFound();
+            }
+        }
 
 
     }

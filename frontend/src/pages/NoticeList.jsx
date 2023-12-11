@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import PostCard from "../components/PostCard";
 
 function NoticeList() {
   const [notices, setNotices] = useState([]);
   const [name, setName] = useState({
     username: "",
   });
-  const [postID, setPostID] = useState("");
+  const navigate = useNavigate();
 
   //carry id to other page
   const location = useLocation();
@@ -48,12 +49,7 @@ function NoticeList() {
 
     fetchAllNotice();
   }, [userID]);
-  const navigate = useNavigate();
-  //function for viewing post
-  const viewPost = () => {
-    navigate(`/view/${userID}/${notices.id}`);
-  };
-
+  const handleDelete = () => {};
   return (
     <div>
       <Navbar
@@ -67,7 +63,7 @@ function NoticeList() {
 
       {notices.map((Notice) => (
         <div key={Notice.id}>
-          <h5>{Notice.id}</h5>
+          {/* <h5>{Notice.id}</h5>
           <h3>{Notice.title}</h3>
           <p>{Notice.description}</p>
           <p>{new Date(Notice.date).toLocaleDateString()}</p>
@@ -75,11 +71,26 @@ function NoticeList() {
           <p>
             {Notice.long} {Notice.lat}
           </p>
-          <button>
-            <Link to={`/view/${userID}/${Notice.id}`}>VIEW</Link>
-          </button>
+          <button onClick={(e) => navigate(`/view/${userID}/${Notice.id}`)}>
+            VIEW
+          </button> */}
+          <PostCard
+            title={Notice.title}
+            desc={Notice.description}
+            date={new Date(Notice.date).toLocaleTimeString()}
+            loc={Notice.location}
+            long={Notice.long}
+            lat={Notice.lat}
+            click={(e) => navigate(`/view/${userID}/${Notice.id}`)}
+            button="VIEW"
+            del={handleDelete}
+            delete="DELETE"
+          />
         </div>
       ))}
+      <button onClick={(e) => navigate(`/post/${userID}`)}>
+        ADD NEW NOTICE
+      </button>
     </div>
   );
 }

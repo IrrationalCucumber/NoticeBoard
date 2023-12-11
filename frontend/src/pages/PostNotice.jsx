@@ -4,6 +4,7 @@ import maplibregl from "maplibre-gl";
 import axios from "axios";
 import "./style.css";
 import { useLocation } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function PostNotice() {
   const [notice, setNotice] = useState({
@@ -18,8 +19,27 @@ function PostNotice() {
   //carry id to other page
   const location = useLocation();
   const userID = location.pathname.split("/")[2]; //pathname to array from url
-
+  const [name, setName] = useState({
+    username: "",
+  });
   const [errorMessage, setErrorMessage] = useState("");
+  //store name no usestate
+  useEffect(() => {
+    const fetchName = async () => {
+      axios
+        .get(`https://localhost:8800/GetName?userId=${userID}`)
+        .then((response) => {
+          //console.log(response.data);
+          setName({
+            username: response.data,
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    fetchName();
+  }, [userID]);
 
   //marker objects
   const [currentLocationMarker, setCurrentLocationMarker] = useState(null);
@@ -124,6 +144,13 @@ function PostNotice() {
   return (
     <div>
       <div>
+        <Navbar
+          home={`/home/${userID}`}
+          notices={`/notices/${userID}`}
+          page2="NOTICES"
+          page4={name.username}
+          profile={`/profile/${userID}`}
+        />
         <h1>POST A NOTICE FOR SENPAI UWU</h1>
         <PostInputs
           handleChange={handleChange}
@@ -137,6 +164,7 @@ function PostNotice() {
           //mapContainer={mapContainer}
         />
       </div>
+      <h4>{errorMessage}</h4>
       <button onClick={handleClick}>POST</button>
     </div>
   );

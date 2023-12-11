@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProfileInputs from "../components/ProfileInputs";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Profile() {
   const [account, setAccount] = useState({
@@ -77,6 +78,13 @@ function Profile() {
   };
   return (
     <div>
+      <Navbar
+        home={`/home/${userID}`}
+        notices={`/notices/${userID}`}
+        page2="NOTICES"
+        page4={account.username.toUpperCase()}
+        profile={`/profile/${userID}`}
+      />
       <ProfileInputs
         change={handleChange}
         username="username"

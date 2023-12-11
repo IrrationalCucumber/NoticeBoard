@@ -4,6 +4,7 @@ import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/Signup";
 import PostNotice from "./pages/PostNotice";
+import NoticeList from "./pages/NoticeList";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/post/:userID" element={<PostNotice />} />
+          <Route path="/notices/:userID" element={<NoticeList />} />
         </Routes>
       </BrowserRouter>
     </div>

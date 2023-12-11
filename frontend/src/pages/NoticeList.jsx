@@ -29,6 +29,9 @@ function NoticeList() {
       {noitces.map((Notice) => (
         <div key={Notice.postID}>
           <p>{Notice.Title}</p>
+          <p>{Notice.Description}</p>
+          <p>{new Date(Notice.Date).toLocaleDateString()}</p>
+          <p>{Notice.Loc}</p>
         </div>
       ))}
     </div>

@@ -30,13 +30,26 @@ function Navbar(props) {
     <>
       <nav className="navbar">
         <div className="navbar-container">
-          <Link to="/home" className="navbar-logo" onClick={closeMobileMenu}>
+          <Link
+            to={props.home}
+            className="navbar-logo"
+            onClick={closeMobileMenu}
+          >
             NOTICE BOARD
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
+              <Link
+                to={props.notices}
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                {props.page2}
+              </Link>
+            </li>
             <li className="nav-item">
               <Link to="/map" className="nav-links" onClick={closeMobileMenu}>
                 MAP

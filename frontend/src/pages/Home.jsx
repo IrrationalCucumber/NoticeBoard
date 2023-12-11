@@ -30,8 +30,9 @@ function Home() {
   return (
     <div>
       <Navbar
-        //faction={`/faction/${userID}`}
-        //page3={faction}
+        home={`/home/${userID}`}
+        notices={`/notices/${userID}`}
+        page2="NOTICES"
         page4={name.username}
         profile={`/profile/${userID}`}
       />

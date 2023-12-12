@@ -56,60 +56,106 @@ function Signup() {
   return (
     <div className="body_su">
       <form className="form_su">
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          placeholder="EMail"
-          name="email"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder="First name"
-          name="fname"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder="Last name"
-          name="lname"
-          onChange={handleChange}
-        />
+        <div className="su_banner">
+          <h1>SIGN UP</h1>
+          <p>And let the world knows what you know</p>
+        </div>
+        <div className="cont_su">
+          <input
+            className="su_in"
+            type="text"
+            placeholder="Username"
+            name="username"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="cont_su">
+          <input
+            className="su_in"
+            type="password"
+            placeholder="Password..."
+            name="password"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="cont_su">
+          <input
+            className="su_in"
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            onChange={handleChange}
+          />
+        </div>
 
-        <select name="gender" onChange={handleChange} value={account.gender}>
-          <option value="">Choose Sex....</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-        <input
-          type="date"
-          placeholder="Birthday"
-          name="bday"
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          placeholder="Age"
-          name="age"
-          onChange={handleChange}
-        />
-        <h4>{errorMessage}</h4>
-        <button onClick={handleClick}>Sign Up</button>
+        <div className="cont_su">
+          <input
+            className="su_in"
+            type="text"
+            placeholder="First name"
+            name="fname"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="cont_su">
+          <input
+            className="su_in"
+            type="text"
+            placeholder="Last name"
+            name="lname"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="cont_su">
+          <select
+            name="gender"
+            onChange={handleChange}
+            value={account.gender}
+            className="su_in"
+          >
+            <option value="">Choose Sex....</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div className="su_row">
+          <div className="su_row_i">
+            <input
+              className="su_in"
+              type="date"
+              placeholder="Birthday"
+              name="bday"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="su_row_i">
+            <input
+              className="su_in"
+              type="number"
+              placeholder="Age"
+              name="age"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="si_error">
+          <h4 className="error">{errorMessage}</h4>
+        </div>
+        <div className="si_button">
+          <button className="su_button" onClick={handleClick}>
+            Sign Up
+          </button>
+        </div>
+
+        <div className="su_link">
+          <h5>
+            <i>
+              Already have an account? Sign-in <Link to="/">here!</Link>
+            </i>
+          </h5>
+        </div>
       </form>
-      <h4>
-        Already have an account? Sign-in <Link to="/">here!</Link>
-      </h4>
     </div>
   );
 }

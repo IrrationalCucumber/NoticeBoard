@@ -23,7 +23,7 @@
     flex-direction: column;
     align-items: center;
     padding: 30px 20px 30px 20px;
-    background-image: linear-gradient(to bottom right, rgb(30, 134, 56), rgb(37, 175, 145), rgb(32, 117, 61));
+    background-image: linear-gradient(to bottom right, rgba(30, 134, 56, 0.623), rgba(37, 175, 145, 0.616), rgba(32, 117, 60, 0.712));
     width: 450px;
     height: 605px;
     position: relative;
@@ -86,18 +86,82 @@
 
 /**=================================SIGN UP ======================================== */
 .body_su{
+    background-color: rgb(31, 158, 109);
+    background-image: url(../../public/images/wp.jpg);
+    background-size: 1366px 768px;
+    width: 1366px;
+    height: 605px;
+    min-width: 800px;
+    min-height: 300px;
     position: relative;
     align-items: center;
+}
+
+.form_su, .cont_su, .su_banner{
+    position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
+
 }
 
 .form_su{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    margin: auto;
+    padding:20px 30px 40px 30px;
+    border-radius: 30px;
+    background-color: rgba(20, 177, 59, 0.795);
+    width: 600px;
+    height: 605px;
 }
 
+.su_banner{
+    padding: 10px 30px 20px 30px;
+    margin: 10px;
+    font-size: large;
+}
+
+.su_button{
+    background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+
+input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cont_su, .su_row{
+    padding: 5px 20px 5px 20px;
+}
+.cont_su input, .su_row input{
+    height: 30px;
+}
+.su_row{
+    display: flex;
+    flex-direction: row;
+}
+.su_row input{
+    width: 116px;
+}
+select.su_in{
+    width: 205%;
+}
+.su_row_i{
+    padding: 0px 5px 0 5px;
+}
+.su_in{
+    padding: 2px 5px;
+    width: 150%;
+    border-radius: 10px;
+}
 /**=================================MAP DESIGN======================================== */

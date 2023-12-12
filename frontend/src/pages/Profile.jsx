@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 function Profile() {
+  const [erroMessage, setErrorMessage] = useState("");
   const [account, setAccount] = useState({
     username: "",
     password: "",
@@ -64,16 +65,17 @@ function Profile() {
     fetchAccount();
   }, [userID]);
   //save changes
-  const saveChanges = () => {
+  const saveChanges = async (e) => {
+    e.preventDefault();
     if (
-      account.username == null ||
-      account.age == null ||
-      account.bday == null ||
-      account.fname == null ||
-      account.lname == null ||
-      account.email == null
+      !account.username ||
+      !account.age ||
+      !account.bday ||
+      !account.fname ||
+      !account.lname ||
+      !account.email
     ) {
-      alert("Missing fields!");
+      setErrorMessage("Missing fields!");
     }
   };
   return (
@@ -85,27 +87,31 @@ function Profile() {
         page4={account.username.toUpperCase()}
         profile={`/profile/${userID}`}
       />
-      <ProfileInputs
-        change={handleChange}
-        username="username"
-        password="password"
-        fname="fname"
-        lname="lname"
-        sex="gender"
-        email="email"
-        sexType={account.gender}
-        date="bday"
-        age="age"
-        //retrieved values
-        usernameValue={account.username}
-        passwordValue={account.password}
-        fnameValue={account.fname}
-        lnameValue={account.lname}
-        emailValue={account.bday}
-        bdayValue={account.bday}
-        ageValue={account.age}
-      />
-      <button onClick={saveChanges}>SAVE</button>
+      <div className="prof-cont">
+        <ProfileInputs
+          change={handleChange}
+          username="username"
+          password="password"
+          fname="fname"
+          lname="lname"
+          sex="gender"
+          email="email"
+          sexType={account.gender}
+          date="bday"
+          age="age"
+          //retrieved values
+          usernameValue={account.username}
+          passwordValue={account.password}
+          fnameValue={account.fname}
+          lnameValue={account.lname}
+          emailValue={account.bday}
+          bdayValue={account.bday}
+          ageValue={account.age}
+          click={saveChanges}
+          buttonName="SAVE"
+          error={erroMessage}
+        />
+      </div>
     </div>
   );
 }

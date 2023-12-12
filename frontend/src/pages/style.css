@@ -11,16 +11,77 @@
     font-family: 'PT Sans', sans-serif;
   }
 
+  /**=========================SIGN IN DESIGN================================================== */
+  .si_cont{
+    background-color: gray;
+    background-image: url(../../public/images/wp.jpg);
+    background-size: 1366px 768px;
+  }
+
 .form_si{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px 20px 50px 20px;
-    background-color: aquamarine;
+    padding: 30px 20px 30px 20px;
+    background-image: linear-gradient(to bottom right, rgb(30, 134, 56), rgb(37, 175, 145), rgb(32, 117, 61));
     width: 450px;
-    height: 490px;
+    height: 605px;
     position: relative;
     left: 0%;
+    border: solid;
+    border-color: rgb(112, 245, 255);
+    border-radius: 20px;
+    color: black;
+}
+@media screen and (max-width: 960px ){
+    .form_si{
+        width: 320px;
+        height: 500px;
+    }
+}
+
+.si_button{
+    padding: 20px 10px 40px 10px;
+}
+.si_error{
+    padding: 10px;
+}
+.si_in,.si_input,.su_link{
+    position: relative;
+}
+
+.si_in{
+    padding: 5px 10px;
+    width: 150%;
+    border-radius: 10px;
+}
+.si_but{
+    background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.si_input{
+    padding: 0px 10px 0px 10px;
+    margin: 20px;
+}
+
+.si_input,.si_banner{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.si_banner, .su_link{
+    margin: auto;
+}
+.su_link{
+   bottom: 10px;
 }
 
 /**=================================SIGN UP ======================================== */

@@ -65,25 +65,43 @@ function SignIn() {
   //  };
 
   return (
-    <div>
+    <div className="si_cont">
       <form action="" className="form_si">
-        <input
-          type="username"
-          placeholder="username"
-          name="username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <p className="error">{errorMessage}</p>
-        <button onClick={handleClick}>Sign In</button>
-        <h4>
-          Don't have an Account?Sign-up <Link to="/sign-up">here!</Link>
-        </h4>
+        <div className="si_banner">
+          <h1>WELCOME</h1>
+          <p>Sign in now to now what's up</p>
+        </div>
+        <div className="si_input">
+          <input
+            className="si_in"
+            type="username"
+            placeholder="Username..."
+            name="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="si_input">
+          <input
+            className="si_in"
+            type="password"
+            placeholder="Password...."
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="si_error">
+          <p className="error">{errorMessage}</p>
+        </div>
+        <div className="si_button">
+          <button className="si_but" onClick={handleClick}>
+            <b>SIGN IN</b>
+          </button>
+        </div>
+        <h5 className="su_link">
+          <i>
+            Don't have an Account? Sign-up <Link to="/sign-up">here!</Link>
+          </i>
+        </h5>
       </form>
     </div>
   );

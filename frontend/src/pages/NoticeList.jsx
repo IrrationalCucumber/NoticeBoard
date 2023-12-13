@@ -3,6 +3,8 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import PostCard from "../components/PostCard";
+import PostCardItem from "../components/PostCardItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function NoticeList() {
   const [notices, setNotices] = useState([]);
@@ -10,10 +12,24 @@ function NoticeList() {
     username: "",
   });
   const navigate = useNavigate();
-
   //carry id to other page
   const location = useLocation();
   const userID = location.pathname.split("/")[2]; //pathname to array from url
+  //check if online
+  //if not, use saved icon
+  const [online, setOnline] = useState(true); // Assume online by default
+  const checkConnection = async () => {
+    try {
+      await fetch("https://www.google.com", { mode: "no-cors" });
+      setOnline(true);
+    } catch (error) {
+      setOnline(false);
+    }
+  };
+  useEffect(() => {
+    checkConnection();
+  }, []);
+
   //store name no usestate
   useEffect(() => {
     const fetchName = async () => {
@@ -67,23 +83,14 @@ function NoticeList() {
         page4={name.username.toUpperCase()}
         profile={`/profile/${userID}`}
       />
-      <h1>Your 'Notice' to Senpai List</h1>
 
-      {notices.map((Notice) => (
-        <div key={Notice.id}>
-          <h5>{Notice.id}</h5>
-          <h3>{Notice.title}</h3>
-          <p>{Notice.description}</p>
-          <p>{new Date(Notice.date).toLocaleDateString()}</p>
-          <p>{Notice.location}</p>
-          <p>
-            {Notice.long} {Notice.lat}
-          </p>
-          <button onClick={(e) => navigate(`/view/${userID}/${Notice.id}`)}>
-            VIEW
-          </button>
-          <button onClick={() => handleDelete(Notice.id)}>DELETE</button>
-          <PostCard
+      <div className="post-cont">
+        <h1>Your 'Notice' to Senpai List</h1>
+        <div className="posts">
+          <div className="post_wrap">
+            {notices.map((Notice) => (
+              <div className="post" key={Notice.id}>
+                {/* <PostCard
             title={Notice.title}
             desc={Notice.description}
             date={new Date(Notice.date).toLocaleTimeString()}
@@ -94,12 +101,33 @@ function NoticeList() {
             button="VIEW"
             del={(e) => handleDelete(Notice.id)}
             delete="DELETE"
-          />
+          /> */}
+
+                <ul className="post_items">
+                  <PostCardItem
+                    id={Notice.id}
+                    title={Notice.title}
+                    desc={Notice.description}
+                    date={new Date(Notice.date).toLocaleDateString()}
+                    loc={Notice.location}
+                    long={Notice.long}
+                    toPost={`/view/${userID}/${Notice.id}`}
+                    delete={(e) => handleDelete(Notice.id)}
+                  />
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-      <button onClick={(e) => navigate(`/post/${userID}`)}>
-        ADD NEW NOTICE
-      </button>
+        <div className="add_post">
+          <button
+            className="add_post"
+            onClick={(e) => navigate(`/post/${userID}`)}
+          >
+            {online ? <i className="fa-solid fa-add fa-beat"></i> : <>ADD</>}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

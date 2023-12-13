@@ -69,10 +69,10 @@ public partial class dbContext : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("postTitle");
             entity.Property(e => e.Description)
-                .HasMaxLength(45)
+                .HasColumnType("text")
                 .HasColumnName("postDesc");
             entity.Property(e => e.Location)
-                .HasMaxLength(45)
+                .HasColumnType("text")
                 .HasColumnName("postLoc");
             entity.Property(e => e.Long).HasColumnName("postLong");
             entity.Property(e => e.Lat).HasColumnName("postLat");

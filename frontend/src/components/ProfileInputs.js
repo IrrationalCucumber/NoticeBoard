@@ -5,6 +5,7 @@ function ProfileInputs(props) {
   return (
     <>
       <form className="prof_form">
+        <h3>PROFILE PAGE</h3>
         <div className="prof_in">
           <input
             type="text"

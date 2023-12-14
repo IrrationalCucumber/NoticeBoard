@@ -23,20 +23,6 @@ export default function Map() {
 
     map.current.addControl(new maplibregl.NavigationControl(), "top-right");
     map.current.addControl(new maplibregl.GeolocateControl(), "top-right"); // button to get location
-
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const currentLng = position.coords.longitude;
-        const currentLat = position.coords.latitude;
-
-        new maplibregl.Marker({ color: "#00FF00" })
-          .setLngLat([currentLng, currentLat])
-          .setPopup(
-            new maplibregl.Popup().setHTML("<h3>Your Current Location</h3>")
-          )
-          .addTo(map.current);
-      });
-    }
   }, [API_KEY, lat, lng, zoom]);
 
   return (

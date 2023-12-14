@@ -116,6 +116,22 @@ namespace backend.Controllers
         }
 
         //====================POST NOTICE===============================================//
+        [HttpGet]
+        public ActionResult<IEnumerable<postModel>> ALlNotice()
+        {
+            using (var context = new dbContext())
+            {
+                var posts = context.Posts.Take(5).ToList();
+
+                if (posts.Count > 0)
+                {
+                    return Ok(posts);
+                }
+
+                return NotFound();
+            }
+        }
+
         //post notice
         [HttpPost]
         public string Post(postModel model)
@@ -162,18 +178,31 @@ namespace backend.Controllers
             using (var context = new dbContext())
             {
                 var postToDelete = context.Posts.FirstOrDefault(post => post.Id == postId);
-
                 if (postToDelete != null)
                 {
                     context.Posts.Remove(postToDelete);
                     context.SaveChanges();
                     return "SUCCESS";
                 }
-
                 return "Post not found";
             }
         }
+        //get post
+        [HttpGet]
+        public ActionResult<userModel> ViewPost(int postID)
+        {
+            using (var context = new dbContext())
+            {
+                var post = context.Posts.FirstOrDefault(post => post.Id == postID);
 
+                if (post != null)
+                {
+                    return Ok(post);
+                }
+
+                return NotFound();
+            }
+        }
 
 
     }

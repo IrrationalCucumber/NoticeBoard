@@ -61,12 +61,10 @@ namespace backend.Controllers
             using (var context = new dbContext())
             {
                 var user = context.Users.FirstOrDefault(user => user.Username == username && user.Password == password);
-
                 if (user != null)
                 {
                     return Ok(user.Id);
                 }
-
                 return NotFound();
             }
         }
@@ -77,12 +75,10 @@ namespace backend.Controllers
             using (var context = new dbContext())
             {
                 var user = context.Users.FirstOrDefault(user => user.Id == userID);
-
                 if (user != null)
                 {
                     return Ok(user.Username);
                 }
-
                 return NotFound();
             }
         }
@@ -93,7 +89,6 @@ namespace backend.Controllers
             {
                 // Retrieve the existing user from the database based on the user ID.
                 var existingUser = context.Users.FirstOrDefault(user => user.Id == userID);
-
                 if (existingUser != null)
                 {
                     // Update the properties of the existing user with the values from the model.
@@ -108,14 +103,11 @@ namespace backend.Controllers
 
                     // Save the changes to the database.
                     context.SaveChanges();
-
                     return "SUCCESS";
                 }
-
                 return "User not found";
             }
         }
-
         //====================POST NOTICE===============================================//
         [HttpGet]
         public ActionResult<IEnumerable<postModel>> ALlNotice()
@@ -132,7 +124,6 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
-
         //post notice
         [HttpPost]
         public string Post(postModel model)
@@ -150,12 +141,10 @@ namespace backend.Controllers
                     PosterID = model.PosterID,
 
                 });
-
                 context.SaveChanges();
             }
             return "SUCCESS";
         }
-       
         //display posted notice
         [HttpGet]
         public ActionResult<IEnumerable<postModel>> NoticeList(int posterID)
@@ -163,12 +152,10 @@ namespace backend.Controllers
             using (var context = new dbContext())
             {
                 var posts = context.Posts.Where(post => post.PosterID == posterID).ToList();
-
                 if (posts.Count > 0)
                 {
                     return Ok(posts);
                 }
-
                 return NotFound();
             }
         }
@@ -176,17 +163,15 @@ namespace backend.Controllers
         [HttpPost]
         public string DeletePost(int postId)
         {
-            using (var context = new dbContext())
+            using var context = new dbContext();
+            var postToDelete = context.Posts.FirstOrDefault(post => post.Id == postId);
+            if (postToDelete != null)
             {
-                var postToDelete = context.Posts.FirstOrDefault(post => post.Id == postId);
-                if (postToDelete != null)
-                {
-                    context.Posts.Remove(postToDelete);
-                    context.SaveChanges();
-                    return "SUCCESS";
-                }
-                return "Post not found";
+                context.Posts.Remove(postToDelete);
+                context.SaveChanges();
+                return "SUCCESS";
             }
+            return "Post not found";
         }
         //get post
         [HttpGet]
@@ -195,12 +180,10 @@ namespace backend.Controllers
             using (var context = new dbContext())
             {
                 var post = context.Posts.FirstOrDefault(post => post.Id == postID);
-
                 if (post != null)
                 {
                     return Ok(post);
                 }
-
                 return NotFound();
             }
         }

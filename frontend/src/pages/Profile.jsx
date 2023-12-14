@@ -19,7 +19,7 @@ function Profile() {
   //carry id to other page
   const location = useLocation();
   const userID = location.pathname.split("/")[2]; //pathname to array from url
-  console.log(location);
+  //console.log(userID);
 
   //save data to account
   const handleChange = (e) => {
@@ -64,9 +64,9 @@ function Profile() {
 
     fetchAccount();
   }, [userID]);
-  //save changes
-  const saveChanges = async (e) => {
-    e.preventDefault();
+  // ...
+
+  const handleClick = async (e) => {
     if (
       !account.username ||
       !account.age ||
@@ -76,8 +76,42 @@ function Profile() {
       !account.email
     ) {
       setErrorMessage("Missing fields!");
+      return;
+    }
+
+    try {
+      // const dataToSend = {
+      //   userID: userID,
+      //   model: {
+      //     Username: account.username,
+      //     Password: account.password,
+      //     FName: account.fname,
+      //     LName: account.lname,
+      //     Email: account.email,
+      //     Bday: account.bday,
+      //     Age: account.age,
+      //     Gender: account.gender,
+      //   },
+      // };
+
+      const response = await axios.post(
+        `https://localhost:8800/UpdateProfile?userID=${userID}`,
+        account
+        // Send data as the 'data' property
+      );
+
+      //Check the response from the server
+      if (response.data === "SUCCESS") {
+        navigate(`/profile/${userID}`);
+      } else {
+        console.error("Update failed:", response.data);
+      }
+    } catch (err) {
+      console.error("Error updating profile:", err);
     }
   };
+
+  console.log(account);
   return (
     <div>
       <Navbar
@@ -88,29 +122,32 @@ function Profile() {
         profile={`/profile/${userID}`}
       />
       <div className="prof-cont">
-        <ProfileInputs
-          change={handleChange}
-          username="username"
-          password="password"
-          fname="fname"
-          lname="lname"
-          sex="gender"
-          email="email"
-          sexType={account.gender}
-          date="bday"
-          age="age"
-          //retrieved values
-          usernameValue={account.username}
-          passwordValue={account.password}
-          fnameValue={account.fname}
-          lnameValue={account.lname}
-          emailValue={account.bday}
-          bdayValue={account.bday}
-          ageValue={account.age}
-          click={saveChanges}
-          buttonName="SAVE"
-          error={erroMessage}
-        />
+        <div className="prof_form">
+          <ProfileInputs
+            change={handleChange}
+            username="username"
+            password="password"
+            fname="fname"
+            lname="lname"
+            sex="gender"
+            email="email"
+            sexType={account.gender}
+            date="bday"
+            age="age"
+            //retrieved values
+            usernameValue={account.username}
+            passwordValue={account.password}
+            fnameValue={account.fname}
+            lnameValue={account.lname}
+            emailValue={account.email}
+            bdayValue={account.bday}
+            ageValue={account.age}
+          />
+          <h4 className="err_msg">{erroMessage}</h4>
+          <div className="prof_button">
+            <button onClick={handleClick}>SAVE</button>
+          </div>
+        </div>
       </div>
     </div>
   );

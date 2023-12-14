@@ -87,7 +87,7 @@ namespace backend.Controllers
             }
         }
         [HttpPost]
-        public string update_profile(int userID, userModel model)
+        public string UpdateProfile(int userID, userModel model)
         {
             using (var context = new dbContext())
             {
@@ -101,6 +101,7 @@ namespace backend.Controllers
                     existingUser.Password = model.Password;
                     existingUser.FName = model.FName;
                     existingUser.LName = model.LName;
+                    existingUser.Email = model.Email;
                     existingUser.Bday = model.Bday;
                     existingUser.Age = model.Age;
                     existingUser.Gender = model.Gender;
@@ -121,8 +122,8 @@ namespace backend.Controllers
         {
             using (var context = new dbContext())
             {
-                var posts = context.Posts.Take(5).ToList();
-
+                //var posts = context.Posts.Take(5).ToList();
+                var posts = context.Posts.ToList();
                 if (posts.Count > 0)
                 {
                     return Ok(posts);

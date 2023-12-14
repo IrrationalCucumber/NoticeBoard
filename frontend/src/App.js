@@ -6,6 +6,8 @@ import Signup from "./pages/Signup";
 import PostNotice from "./pages/PostNotice";
 import NoticeList from "./pages/NoticeList";
 import Map from "./pages/Map";
+import ViewPost from "./pages/ViewPost";
+import UpdatePost from "./pages/UpdatePost";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/post/:userID" element={<PostNotice />} />
           <Route path="/notices/:userID" element={<NoticeList />} />
           <Route path="/map" element={<Map />} />
+          <Route path="/view/:userID/:postID" element={<ViewPost />} />
+          <Route path="/upadate/:userID/:postID" element={<UpdatePost />} />
         </Routes>
       </BrowserRouter>
     </div>

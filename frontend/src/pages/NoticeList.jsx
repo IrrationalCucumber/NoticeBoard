@@ -74,6 +74,10 @@ function NoticeList() {
       console.log(err);
     }
   };
+
+  const viewPost = (id) => {
+    navigate(`/view/${userID}/${id}`);
+  };
   return (
     <div>
       <Navbar
@@ -90,19 +94,6 @@ function NoticeList() {
           <div className="post_wrap">
             {notices.map((Notice) => (
               <div className="post" key={Notice.id}>
-                {/* <PostCard
-            title={Notice.title}
-            desc={Notice.description}
-            date={new Date(Notice.date).toLocaleTimeString()}
-            loc={Notice.location}
-            long={Notice.long}
-            lat={Notice.lat}
-            click={(e) => navigate(`/view/${userID}/${Notice.id}`)}
-            button="VIEW"
-            del={(e) => handleDelete(Notice.id)}
-            delete="DELETE"
-          /> */}
-
                 <ul className="post_items">
                   <PostCardItem
                     id={Notice.id}
@@ -111,7 +102,7 @@ function NoticeList() {
                     date={new Date(Notice.date).toLocaleDateString()}
                     loc={Notice.location}
                     long={Notice.long}
-                    toPost={`/view/${userID}/${Notice.id}`}
+                    toPost={(e) => viewPost(Notice.id)}
                     delete={(e) => handleDelete(Notice.id)}
                   />
                 </ul>

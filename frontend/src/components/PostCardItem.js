@@ -19,19 +19,21 @@ function PostCardItem(props) {
 
   return (
     <>
-      <li className="post_item" onClick={props.toPost}>
-        <h2>#{props.id}</h2>
-        <div className="post_info">
-          <h3>{props.title}</h3>
-        </div>
-        <div className="post_info">
-          <p>{props.desc}</p>
-        </div>
-        <div className="post_info">
-          <h5>{props.date}</h5>
-        </div>
-        <div className="post_info">
-          <h4>{props.loc}</h4>
+      <li className="li_wrap">
+        <div className="post_item" onClick={props.toPost}>
+          <h2>#{props.id}</h2>
+          <div className="post_info">
+            <h3>{props.title}</h3>
+          </div>
+          <div className="post_info">
+            <p>{props.desc}</p>
+          </div>
+          <div className="post_info">
+            <h5>{props.date}</h5>
+          </div>
+          <div className="post_info">
+            <h4>{props.loc}</h4>
+          </div>
         </div>
 
         <buton className="post_button" onClick={props.delete}>

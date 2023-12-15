@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import Section from "../components/Section";
 
 function Home() {
   const [name, setName] = useState({
@@ -37,7 +38,8 @@ function Home() {
         page4={name.username}
         profile={`/profile/${userID}`}
       />
-      Home
+
+      <Section />
     </div>
   );
 }

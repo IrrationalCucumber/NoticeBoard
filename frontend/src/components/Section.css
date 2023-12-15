@@ -71,3 +71,10 @@ video {
 .btn{
     width: 100%;
 }
+
+.hero-btns button:hover{
+    border: black;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}

@@ -18,7 +18,7 @@ function Section() {
           buttonSize="btn--large"
           page={`/notices/${userID}`}
         >
-          See your Notices
+          SEE POSTS
         </Button>
         <Button
           className="btns"
@@ -26,7 +26,7 @@ function Section() {
           buttonSize="btn--large"
           page={`/map/${userID}`}
         >
-          VIEW NEARBY COMMISSION
+          VIEW NEARBY POST
         </Button>
       </div>
     </div>

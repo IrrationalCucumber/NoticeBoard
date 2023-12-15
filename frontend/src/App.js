@@ -22,7 +22,7 @@ function App() {
           <Route path="/notices/:userID" element={<NoticeList />} />
           <Route path="/map" element={<Map />} />
           <Route path="/view/:userID/:postID" element={<ViewPost />} />
-          <Route path="/upadate/:userID/:postID" element={<UpdatePost />} />
+          <Route path="/update/:userID/:postID" element={<UpdatePost />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -18,6 +18,7 @@ function UpdatePost() {
   const [name, setName] = useState({
     username: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   //handle change
   const handleChange = (e) => {
@@ -178,7 +179,7 @@ function UpdatePost() {
 
       //Check the response from the server
       if (response.data === "SUCCESS") {
-        navigate(`/view/${userID}/${postID}`);
+        navigate(`/update/${userID}/${postID}`);
       } else {
         console.error("Update failed:", response.data);
       }
@@ -212,7 +213,9 @@ function UpdatePost() {
           mapContainer={mapContainer}
         />
       </div>
-
+      <div className="err_msg">
+        <h4>{errorMessage}</h4>
+      </div>
       <button className="add_notice" onClick={handleUpdate}>
         <b>UPDATE</b>
       </button>

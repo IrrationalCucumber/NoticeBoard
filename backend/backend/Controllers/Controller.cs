@@ -18,7 +18,7 @@ namespace backend.Controllers
             return list;
         }
         [HttpPost]
-        public string SignUp(userModel model)
+        public string SignUp(userModel model) //accept new data
         {
             using (var context = new dbContext())
             {
@@ -39,7 +39,7 @@ namespace backend.Controllers
             return "SUCCESS";
         }
         [HttpGet]
-        public ActionResult<userModel> Profile(int userId)
+        public ActionResult<userModel> Profile(int userId) //return user data based on id
         {
             using (var context = new dbContext())
             {
@@ -82,6 +82,7 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
+        //update the user data
         [HttpPost]
         public string UpdateProfile(int userID, userModel model)
         {
@@ -100,8 +101,6 @@ namespace backend.Controllers
                     existingUser.Bday = model.Bday;
                     existingUser.Age = model.Age;
                     existingUser.Gender = model.Gender;
-
-                    // Save the changes to the database.
                     context.SaveChanges();
                     return "SUCCESS";
                 }
@@ -110,7 +109,7 @@ namespace backend.Controllers
         }
         //====================POST NOTICE===============================================//
         [HttpGet]
-        public ActionResult<IEnumerable<postModel>> ALlNotice() //all notice
+        public ActionResult<IEnumerable<postModel>> AllNotice() //all notice
         {
             using (var context = new dbContext())
             {
@@ -125,11 +124,11 @@ namespace backend.Controllers
             }
         }
         [HttpGet]
-        public ActionResult<IEnumerable<postModel>> SomeNotice() 
+        public ActionResult<IEnumerable<postModel>> SomeNotice() //return the 5 most recent post
         {
             using (var context = new dbContext())
             {
-                var posts = context.Posts.Take(5).ToList();
+                var posts = context.Posts.OrderByDescending(post=>post.Id).Take(5).ToList();
                 if (posts.Count > 0)
                 {
                     return Ok(posts);

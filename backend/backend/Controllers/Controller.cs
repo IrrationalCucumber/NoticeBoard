@@ -110,12 +110,26 @@ namespace backend.Controllers
         }
         //====================POST NOTICE===============================================//
         [HttpGet]
-        public ActionResult<IEnumerable<postModel>> ALlNotice()
+        public ActionResult<IEnumerable<postModel>> ALlNotice() //all notice
         {
             using (var context = new dbContext())
             {
                 //var posts = context.Posts.Take(5).ToList();
                 var posts = context.Posts.ToList();
+                if (posts.Count > 0)
+                {
+                    return Ok(posts);
+                }
+
+                return NotFound();
+            }
+        }
+        [HttpGet]
+        public ActionResult<IEnumerable<postModel>> SomeNotice() 
+        {
+            using (var context = new dbContext())
+            {
+                var posts = context.Posts.Take(5).ToList();
                 if (posts.Count > 0)
                 {
                     return Ok(posts);
@@ -187,6 +201,7 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
+        
 
 
     }

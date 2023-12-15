@@ -76,7 +76,8 @@ function NoticeList() {
   };
 
   const viewPost = (id) => {
-    navigate(`/view/${userID}/${id}`);
+    navigate(`/update/${userID}/${id}`);
+    //navigate(`/view/${userID}/${id}`);
   };
   return (
     <div>

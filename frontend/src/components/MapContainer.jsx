@@ -9,11 +9,7 @@ export default function Map() {
   //carry id to other page
   const location = useLocation();
   const userID = location.pathname.split("/")[2]; //pathname to array from url
-  //view post
-  const navigate = useNavigate();
-  const viewPost = (id) => {
-    navigate(`/view/${userID}/${id}`);
-  };
+
   //get all posted noitce
   const fetchNotices = async () => {
     try {
@@ -48,7 +44,7 @@ export default function Map() {
           .setLngLat([notice.long, notice.lat])
           .setPopup(
             new maplibregl.Popup().setHTML(
-              `<h3>${notice.title}</h3><p>${notice.date}</p>`
+              `<h3>${notice.title}</h3><p>${notice.date}</p><a href="/view/${userID}/${notice.id}">VIEW</a>`
             )
           )
           .addTo(map.current);

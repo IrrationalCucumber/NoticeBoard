@@ -201,7 +201,31 @@ namespace backend.Controllers
                 return NotFound();
             }
         }
-        
+        [HttpPost]
+        public string UpdateNotice(int postID, postModel model)
+        {
+            using (var context = new dbContext())
+            {
+                // Retrieve the existing user from the database based on the user ID.
+                var existingPost = context.Posts.FirstOrDefault(post => post.Id == postID);
+                if (existingPost != null)
+                {
+                    // Update the properties of the existing user with the values from the model.
+                    existingPost.Title = model.Title;
+                    existingPost.Description = model.Description;
+                    existingPost.Location = model.Location;
+                    existingPost.Long = model.Long;
+                    existingPost.Lat = model.Lat;
+                    existingPost.Date = model.Date;
+                    existingPost.PosterID = model.PosterID;
+                    // Save the changes to the database.
+                    context.SaveChanges();
+                    return "SUCCESS";
+                }
+                return "User not found";
+            }
+        }
+
 
 
     }

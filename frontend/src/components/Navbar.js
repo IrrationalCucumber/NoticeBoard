@@ -51,7 +51,11 @@ function Navbar(props) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/map" className="nav-links" onClick={closeMobileMenu}>
+              <Link
+                to={props.map}
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
                 MAP
               </Link>
             </li>

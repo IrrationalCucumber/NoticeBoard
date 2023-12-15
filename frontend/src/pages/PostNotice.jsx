@@ -150,6 +150,7 @@ function PostNotice() {
         page2="NOTICES"
         page4={name.username}
         profile={`/profile/${userID}`}
+        map={`/map/${userID}`}
       />
       <div className="input_body">
         <h1>POST A NOTICE FOR SENPAI UWU</h1>

@@ -85,6 +85,7 @@ function NoticeList() {
         home={`/home/${userID}`}
         notices={`/notices/${userID}`}
         page2="NOTICES"
+        map={`/map/${userID}`}
         page4={name.username.toUpperCase()}
         profile={`/profile/${userID}`}
       />

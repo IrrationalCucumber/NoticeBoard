@@ -20,7 +20,7 @@ function App() {
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/post/:userID" element={<PostNotice />} />
           <Route path="/notices/:userID" element={<NoticeList />} />
-          <Route path="/map" element={<Map />} />
+          <Route path="/map/:userID" element={<Map />} />
           <Route path="/view/:userID/:postID" element={<ViewPost />} />
           <Route path="/update/:userID/:postID" element={<UpdatePost />} />
         </Routes>

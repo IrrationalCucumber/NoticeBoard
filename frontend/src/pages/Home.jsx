@@ -32,6 +32,7 @@ function Home() {
       <Navbar
         home={`/home/${userID}`}
         notices={`/notices/${userID}`}
+        map={`/map/${userID}`}
         page2="NOTICES"
         page4={name.username}
         profile={`/profile/${userID}`}

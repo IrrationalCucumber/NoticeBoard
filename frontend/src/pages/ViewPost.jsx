@@ -179,6 +179,7 @@ function ViewPost() {
         notices={`/notices/${userID}`}
         page2="NOTICES"
         page4={name.username}
+        map={`/map/${userID}`}
         profile={`/profile/${userID}`}
       />
       <div className="input_body">

@@ -120,6 +120,7 @@ function Profile() {
         page2="NOTICES"
         page4={account.username.toUpperCase()}
         profile={`/profile/${userID}`}
+        map={`/map/${userID}`}
       />
       <div className="prof-cont">
         <div className="prof_form">

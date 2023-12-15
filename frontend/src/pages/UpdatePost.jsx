@@ -158,7 +158,34 @@ function UpdatePost() {
   }, [currentLocationMarker]);
 
   const navigate = useNavigate();
-  const handleUpdate = () => {};
+  const handleUpdate = async () => {
+    if (
+      !notice.title ||
+      !notice.description ||
+      !notice.location ||
+      !notice.date
+    ) {
+      setErrorMessage("Missing fields!");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `https://localhost:8800/UpdateNotice?postID=${postID}`,
+        notice
+        // Send data as the 'data' property
+      );
+
+      //Check the response from the server
+      if (response.data === "SUCCESS") {
+        navigate(`/view/${userID}/${postID}`);
+      } else {
+        console.error("Update failed:", response.data);
+      }
+    } catch (err) {
+      console.error("Error updating Notice:", err);
+    }
+  };
   return (
     <div>
       <Navbar

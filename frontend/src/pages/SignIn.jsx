@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
+import { useAuth } from "../components/AuthContext"; // Import useAuth
 
 function SignIn() {
   const [username, setUsername] = useState("");
@@ -9,6 +10,7 @@ function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
   const [userID, setUserID] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth(); // Get the login function from useAuth
 
   //hndle event when button is click
   const handleClick = async (e) => {
@@ -25,10 +27,11 @@ function SignIn() {
       );
 
       if (response != null) {
-        console.log(response.data);
+        //console.log(response.data);
 
         // Use the useEffect hook to handle the state update asynchronously
         setUserID(response.data);
+        login();
         navigate(`/home/${response.data}`);
       } else {
         setErrorMessage("Invalid Username/Password");
@@ -41,28 +44,8 @@ function SignIn() {
 
   useEffect(() => {
     // This useEffect will be triggered when userID changes
-    console.log(userID);
+    // console.log(userID);
   }, [userID]);
-  // await axios
-  //   .get(
-  //     `https://localhost:8800/SignIn?username=${username}&password=${password}`
-  //   )
-  //   .then((response) => {
-  //     if (response != null) {
-  //       console.log(response.data);
-  //       setUserID(response.data);
-  //       //console.log(userID);
-  //       //navigate(`/home/${userID}`);
-  //     } else {
-  //       setErrorMessage("Invalid Username/Password");
-  //     }
-  //     console.log(userID);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //     setErrorMessage("Invalid Username/Password");
-  //   });
-  //  };
 
   return (
     <div className="si_cont">

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 import "./Navbar.css";
+import { useAuth } from "./AuthContext";
 
 function Navbar(props) {
   //change the state of the menu
@@ -10,6 +11,13 @@ function Navbar(props) {
   //reverse the state of the above funstion
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  // log uot user
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -70,7 +78,7 @@ function Navbar(props) {
             </li>
           </ul>
           {button && (
-            <Button page="/" buttonStyle="btn--outline">
+            <Button onClick={handleLogout} buttonStyle="btn--outline">
               SIGN OUT
             </Button>
           )}

@@ -38,7 +38,6 @@ function Home() {
         page4={name.username}
         profile={`/profile/${userID}`}
       />
-
       <Section />
     </div>
   );

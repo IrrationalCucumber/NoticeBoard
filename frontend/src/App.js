@@ -8,22 +8,27 @@ import NoticeList from "./pages/NoticeList";
 import Map from "./pages/Map";
 import ViewPost from "./pages/ViewPost";
 import UpdatePost from "./pages/UpdatePost";
+import { AuthProvider } from "./components/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <Routes>
-          <Route path="/home/:userID" exact Component={Home} />
-          <Route path="/profile/:userID" element={<Profile />} />
-          <Route path="/" element={<SignIn />} />
-          <Route path="/sign-up" element={<Signup />} />
-          <Route path="/post/:userID" element={<PostNotice />} />
-          <Route path="/notices/:userID" element={<NoticeList />} />
-          <Route path="/map/:userID" element={<Map />} />
-          <Route path="/view/:userID/:postID" element={<ViewPost />} />
-          <Route path="/update/:userID/:postID" element={<UpdatePost />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/home/:userID" exact Component={Home} />
+            <Route path="/profile/:userID" element={<Profile />} />
+            <Route path="/" element={<SignIn />} />
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/post/:userID" element={<PostNotice />} />
+            <Route path="/notices/:userID" element={<NoticeList />} />
+            <Route path="/map/:userID" element={<Map />} />
+            <Route path="/view/:userID/:postID" element={<ViewPost />} />
+            <Route path="/update/:userID/:postID" element={<UpdatePost />} />
+          </Routes>
+          <PrivateRoute path="home/:userID" element={<Home />} />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
